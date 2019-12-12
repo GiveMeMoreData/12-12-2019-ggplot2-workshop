@@ -24,26 +24,66 @@ Trudnosci zadań opsane są gwiazdkami przy ich tytułach i odpowiadają one sza
 </center>
 
 
-### Wzorzec
 
-## TYTUŁ Trudność * / ** / *** 
+## 1. Punktowy wykres zależności współczynników wraz z wyróżnionymi krajami *
+
 ### Opis 
-{krótki opis, o co trzeba zrobić w zadaniu}
-
+Celem poniższego zadania jest sprawdzanie swoich umiejętności w użyciu funkcji geom_point() z różnymi wartościami zaznaczonymi na osiach x i y. Ponadto, zaznaczyć należy państwa o najwyższym oraz najniższym współczynniku urodzeń na świecie.
 <center>
-![](img/g3_styl_2.png)
+![](img/zadanie1.png)
 </center>
 ```{r echo=TRUE,eval=FALSE}
+#install.packages("SmarterPoland")
 library(ggplot2)
-library(dplyr)
-
-
-#wczytanie odpowiednich danych itd
+library(SmarterPoland)
 
 ```
 <br /> <br /> 
 
-## Oceny filmów * 
+## 2. Gęstości współczynników zgonów na różnych kontynentach **
+
+### Opis 
+Zadaniem jest przygotowanie porównania gęstości współczynnika zgonów na kontynentach za pomocą 5 figur, wyświetlonych na różnych panelach. Należy zwrócić uwagę na różne kolory wykresów, przerywaną linię oraz podpisy.
+
+<center>
+![](img/zadanie2.png)
+</center>
+
+<br /> <br /> 
+
+## 3. Populacje *
+
+### Opis
+W zadaniu należy wykonać wizualizację rozkładu populacji wśród państw na różnych kontynentach, zarówno za pomocą wykresu skrzynkowego jak i punktowego. Zwróć uwagę na miarę zastosowaną w wyświetleniu skali y
+
+<center>
+![](img/zadanie3.png)
+</center>
+
+<br /> <br /> 
+
+## 4. Złożony wykres kolumnowy **
+
+### Opis
+Ta wizualizacja zostanie przedstawiona na zbiorze danych iris, a jej celem jest prezentacja różnych średnich wartości dla poszczególnych gatunków. 
+
+
+
+<center>
+![](img/zadanie4.png)
+</center>
+
+<br /> <br /> 
+
+```{r echo=TRUE,eval=FALSE}
+library(ggplot2)
+library(reshape2)
+iris2 <- melt(iris, id.vars="Species")
+
+```
+
+## 5. Oceny filmów * 
+
 ### Opis 
 Celem jest przedstawienie ilości filmów, w różnych przedziałach oceny z serwisu IMDB.
 (Sama wielkość przedziałów jest dowolna, nie trzeba jej określać by rozwiązać zadanie).
@@ -59,7 +99,8 @@ movies <- read.csv("data/movie_metadata.csv")
 ```
 <br /> <br /> 
 
-## Budżety filmowe * 
+## 6. Budżety filmowe * 
+
 ### Opis 
 Wizualizacja lini trendu budżetów w filmach na przestrzeni lat<br />
 a) wszystkich filmów IMDb<br />
@@ -79,7 +120,8 @@ movies500 <- head(movies, 500)
 ```
 <br /> <br /> 
 
-## Aktorzy ** 
+## 7. Aktorzy ** 
+
 ### Opis 
 Celem w tym zadaniu jest odtworzenie wykresu poniżej z jak największą ilością detali. 
 Dla ułatwienia w zadaniu zostały podane dwie funkcje, którch wykożystanie jest praktycznie niezbędne.
@@ -108,7 +150,8 @@ head(movies_actors)
 ```
 <br /> <br /> 
 
-## Czy filmy są coraz gorsze? *** 
+## 8. Czy filmy są coraz gorsze? *** 
+
 ### Opis 
 Celem zadania jest dokładne odtworzenie wykresu z poniższego zdjęcia
 
@@ -130,4 +173,68 @@ movies_year <- movies%>%
 
 ```
 <br /> <br /> 
+
+
+## Opis 
+
+W kolejnych 3 zadaniach będziemy korzystać z biblioteki nycflights13. Zwizualizujemy między innymi ukształtowanie terenu w USA, 
+
+## 9. "Mapka" USA ** 
+
+1. Za pomocą zbioru "airports" wczytanego z biblioteki nycflights13 narysuj mapę Ameryki północnej (bez Hawajów i Alaski - sam ląd)
+podpowiedź: rozważ skale obie skale continious i narysuj wykres punktowy, oraz odpowiednio ogranicz
+2. Uwzględnij ukształtownie terenu (podpowiedź: alt - wysokość nad poziomem morza, użyj kolorów )
+3. Następnie na tej samej mapie wyróżnij kolorem strefy czasowe
+
+
+</center>
+```{r echo=TRUE,eval=FALSE}
+library(ggplot2)
+library(nycflights13)
+
+flights
+
+```
+<br /> <br /> 
+
+## 10. Odległości lotu *   
+Dla każdego lotniska wykresy skrzypcowowe odległości lotu w każdym z pierwszych sześciu miesięcy roku
+
+</center>
+```{r echo=TRUE,eval=FALSE}
+library(ggplot2)
+library(nycflights13)
+
+airports
+
+
+```
+<br /> <br /> 
+
+
+## 11. Upiększanie wykresu *
+
+
+Do danego wykresu (patrz niżej) nanieś:
+tytuł "Samoloty i ich silniki od 1995"
+podpisy osi i tytuł legendy (podpowiedź - są w tej samej funkcji)
+zmień kolor tła wykresu na biały używając theme_bw()
+usuń linie na wykresie (minor i major), ale tylko dla osi x, poszukaj tego w ?theme()
+wytłuszcz tytuł legendy (nadaj mu face = "bold w odpowiednim miejscu)
+zmień kolory w legendzie na "pink", "orange", "navy", "green" (w funkcji scale_fill_manual)
+
+
+</center>
+```{r echo=TRUE,eval=FALSE}
+library(ggplot2)
+library(nycflights13)
+
+planes
+
+ggplot(planes[planes$year >= 1995,], aes(year, fill = engine)) +
+  geom_bar()
+
+```
+<br /> <br /> 
+
 
